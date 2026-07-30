@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovieVerse | Movie & TV Finder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <span style="color: var(--text-muted); font-size: 0.95rem;">Welcome, <strong id="userDisplayName" style="color: #fff;">User</strong>!</span>
+        <button onclick="handleLogout()" style="padding: 8px 16px; font-size: 0.85rem; background: #334155; box-shadow: none;">Logout</button>
+      </div>
+
+      <h1>🎬 MovieVerse</h1>
+      <p class="subtitle">Discover movies, TV series, and details instantly</p>
+
+      <div class="nav-tabs">
+        <button id="viewSearchBtn" class="tab-btn active" onclick="switchView('search')">Search</button>
+        <button id="viewFavoritesBtn" class="tab-btn" onclick="switchView('favorites')">❤️ Watchlist (<span id="favCount">0</span>)</button>
+      </div>
+
+      <div id="searchControls">
+        <div class="search-bar">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search for Batman, Inception, Friends..."
+            onkeyup="if(event.key === 'Enter') searchMedia()"
+          >
+          <button onclick="searchMedia()">Search</button>
+        </div>
+
+        <div class="filter-bar">
+          <select id="genreFilter" onchange="applyFilters()">
+            <option value="ALL">All Genres</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Animation">Animation</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Crime">Crime</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Horror">Horror</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+
+            <option value="Thriller">Thriller</option>
+          </select>
+          <select id="typeFilter" onchange="applyFilters()">
+            <option value="ALL">All Types</option>
+            <option value="movie">Movies</option>
+            <option value="series">TV Series</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="errorMsg" class="error-msg"></p>
+    </header>
+
+    <main id="resultsGrid" class="results-grid"></main>
+
+    <div id="detailPage" class="detail-page hidden">
+      <button class="back-btn" onclick="closeDetailPage()">&larr; Back to Results</button>
+      <div id="detailContent" class="detail-container"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
